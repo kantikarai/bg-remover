@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Background Remover</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="font-[Poppins] min-h-screen overflow-x-hidden">
+  <div class="bubbles">
+<span></span><span></span><span></span>
+<span></span><span></span><span></span>
+  </div>
+  <header
+    class="w-full fixed top-0 z-10 flex justify-between items-center bg-white/5 backdrop-blur-lg px-10 py-4 border-b border-white/10 animate-fadeSlide flex-wrap gap-3">
+    <img src="./assets/logo.png" alt="Logo" class="w-36 hover:scale-105 transition" />
+
+    <nav class="flex items-center flex-wrap">
+      <button id="themeToggle"
+        class="border-2 border-sky-400 text-sky-400 rounded-full w-10 h-10 flex items-center justify-center mx-2 hover:rotate-12 hover:scale-110 transition-all">
+        <i class="fas fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+  <main class="mt-32 flex flex-col items-center justify-center px-5">
+    <section id="mainSection"
+      class="w-full max-w-6xl bg-white/5 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.3)] p-8 flex flex-wrap justify-center gap-8 animate-fadeUp">
+      <!-- Left preview -->
+      <div class="flex-1 min-w-[300px] text-center">
+        <img src="./assets/blankImage.webp" alt="Preview" id="previewImg"
+          class="w-full max-w-md rounded-2xl transition-transform" />
+      </div>
+
+      <div class="flex-1 min-w-[300px] text-center space-y-4">
+        <div id="uploadArea"
+          class="border-2 border-dashed border-sky-400 rounded-2xl p-10 cursor-pointer bg-white/5 hover:bg-white/10 transition">
+          <h4 class="font-semibold mb-3">Upload Your Image</h4>
+          <input type="file" id="fileInput" accept="image/*" class="hidden" />
+          <p class="text-gray-300">Drag & Drop or Click to Upload</p>
+        </div>
+
+        <div id="actionButtons" class="hidden flex justify-center gap-3">
+          <button id="removeBgBtn"
+            class="bg-gradient-to-r from-rose-500 to-rose-400 text-white px-6 py-3 rounded-full font-semibold hover:shadow-[0_0_15px_rgba(255,107,107,0.4)] transition">
+            <i class="fas fa-magic"></i> Remove Background
+          </button>
+        </div>
+
+        <div class="w-4/5 mx-auto mt-3 bg-white/10 rounded overflow-hidden h-2">
+          <div id="progressBar"
+            class="h-full w-0 bg-gradient-to-r from-sky-400 via-blue-600 to-sky-400 animate-[progressMove_2s_linear_infinite]">
+          </div>
+        </div>
+        <p id="progressText" class="text-center text-sm mt-2"></p>
+
+        <div id="editingControls" class="hidden bg-white/5 rounded-xl p-4 text-left">
+          <h5 class="text-lg font-semibold mb-3 text-center">Edit Your Image</h5>
+
+          <div class="mb-3">
+            <div class="flex justify-between mb-1">
+              <span>Brightness</span><span id="brightnessValue" class="text-sky-400 font-semibold">100%</span>
+            </div>
+            <input type="range" id="brightnessSlider" min="0" max="200" value="100" class="w-full accent-sky-400" />
+          </div>
+
+          <div class="mb-3">
+            <div class="flex justify-between mb-1">
+              <span>Contrast</span><span id="contrastValue" class="text-sky-400 font-semibold">100%</span>
+            </div>
+            <input type="range" id="contrastSlider" min="0" max="200" value="100" class="w-full accent-sky-400" />
+          </div>
+          <div class="mb-3">
+            <div class="flex justify-between mb-1">
+              <span>Saturation</span><span id="saturationValue" class="text-sky-400 font-semibold">100%</span>
+            </div>
+            <input type="range" id="saturationSlider" min="0" max="200" value="100" class="w-full accent-sky-400" />
+          </div>
+
+          <div class="mb-3">
+            <div class="flex justify-between mb-1">
+              <span>Blur</span><span id="blurValue" class="text-sky-400 font-semibold">0px</span>
+            </div>
+            <input type="range" id="blurSlider" min="0" max="10" value="0" step="0.1" class="w-full accent-sky-400" />
+          </div>
+
+          <button id="resetFilters"
+            class="border border-rose-500 text-rose-400 px-4 py-2 rounded-full hover:bg-rose-500/10 transition w-full mt-2">
+            Reset Filters
+          </button>
+        </div>
+
+        <div id="resultBox" class="hidden flex flex-col items-center space-y-3">
+          <a id="downloadBtn" href="#" download
+            class="bg-gradient-to-r from-blue-600 to-sky-400 text-white px-6 py-3 rounded-full font-semibold hover:shadow-[0_0_15px_rgba(0,170,255,0.4)] transition w-full text-center">
+            Download Image
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
