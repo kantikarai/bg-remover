@@ -1,1 +1,1 @@
-# bg-remover
+# background-remover
